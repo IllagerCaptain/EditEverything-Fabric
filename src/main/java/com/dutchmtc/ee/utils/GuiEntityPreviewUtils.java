@@ -1,7 +1,7 @@
 package com.dutchmtc.ee.utils;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
@@ -19,7 +19,7 @@ public final class GuiEntityPreviewUtils {
     private GuiEntityPreviewUtils() {
     }
 
-    public static void renderLivingEntityInBox(GuiGraphics graphics, int x, int y, int width, int height, int scale, float yOffset,
+    public static void renderLivingEntityInBox(GuiGraphicsExtractor graphics, int x, int y, int width, int height, int scale, float yOffset,
                                               float yawOffsetDeg, float pitchDeg, LivingEntity entity) {
         if (graphics == null || entity == null) {
             return;
@@ -55,7 +55,7 @@ public final class GuiEntityPreviewUtils {
         base.mul(pitchRot);
 
         Vector3f translate = new Vector3f(0.0f, state.boundingBoxHeight / 2.0f + yOffset, 0.0f);
-        // GuiGraphics.submitEntityRenderState takes x0/y0/x1/y1 (not width/height)
+        // GuiGraphicsExtractor.submitEntityRenderState takes x0/y0/x1/y1 (not width/height)
         graphics.submitEntityRenderState(state, (float) scale, translate, base, pitchRot, x, y, x + width, y + height);
     }
 

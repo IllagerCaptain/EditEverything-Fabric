@@ -2,7 +2,7 @@ package com.dutchmtc.ee.mixin;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.debug.GameModeSwitcherScreen;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.world.level.GameType;
 import org.lwjgl.glfw.GLFW;
@@ -18,8 +18,8 @@ public class GameModeSwitcherScreenMixin {
     @Unique
     private boolean ee$seenDebugModifierDown;
 
-    @Inject(method = "render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V", at = @At("HEAD"))
-    private void ee$closeAndApplyWhenDebugKeyReleased(GuiGraphics graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    @Inject(method = "extractRenderState(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIF)V", at = @At("HEAD"), remap = false)
+    private void ee$closeAndApplyWhenDebugKeyReleased(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft == null || minecraft.getWindow() == null) {
             return;
@@ -40,7 +40,8 @@ public class GameModeSwitcherScreenMixin {
     @Inject(
             method = "switchToHoveredGameMode(Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/gui/screens/debug/GameModeSwitcherScreen$GameModeIcon;)V",
             at = @At("HEAD"),
-            cancellable = true
+            cancellable = true,
+            remap = false
     )
     private static void ee$switchGamemodeClientSide(Minecraft minecraft, @Coerce Object icon, CallbackInfo ci) {
         if (minecraft == null || icon == null || !minecraft.canSwitchGameMode()) {

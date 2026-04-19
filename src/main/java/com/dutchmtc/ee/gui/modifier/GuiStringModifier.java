@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.dutchmtc.ee.gui.components.EEButton;
 import com.dutchmtc.ee.utils.ChatUtils;
 import com.dutchmtc.ee.utils.GuiUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
@@ -32,12 +32,12 @@ public class GuiStringModifier extends GuiModifier<String> {
     }
 
     @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         // do nothing
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         super.renderBackground(graphics, mouseX, mouseY, partialTicks);
         super.render(graphics, mouseX, mouseY, partialTicks);
         GuiUtils.drawRightString(graphics, font, I18n.get("gui.ee.text") + " : ", field.getX(), field.getY(), Color.ORANGE.getRGB(),

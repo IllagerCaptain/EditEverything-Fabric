@@ -9,7 +9,7 @@ import com.dutchmtc.ee.utils.ItemUtils;
 import com.dutchmtc.ee.utils.ItemUtils.ExplosionInformation;
 import com.dutchmtc.ee.utils.Tuple;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -60,7 +60,7 @@ public class GuiFireworksModifer extends GuiListModifier<CompoundTag> {
         }
 
         @Override
-        public void draw(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
+        public void draw(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
             GuiUtils.drawRelative(graphics, flight, offsetX, offsetY, mouseX, mouseY, partialTicks);
             GuiUtils.drawString(graphics, font, title, offsetX, offsetY, (err ? Color.RED : Color.WHITE).getRGB(),
                     flight.getHeight());
@@ -136,7 +136,7 @@ public class GuiFireworksModifer extends GuiListModifier<CompoundTag> {
         }
 
         @Override
-        public void drawNext(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY,
+        public void drawNext(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY,
                              float partialTicks) {
             if (GuiUtils.isHover(0, 0, 200, 20, mouseX, mouseY)) {
                 List<String> data = new ArrayList<>();
@@ -262,12 +262,12 @@ public class GuiFireworksModifer extends GuiListModifier<CompoundTag> {
         }
 
         @Override
-        public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+        public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
             // do nothing
         }
 
         @Override
-        public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+        public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
             super.renderBackground(graphics, mouseX, mouseY, partialTicks);
             super.render(graphics, mouseX, mouseY, partialTicks);
             colors.draw(graphics, mouseX, mouseY, getZLevel()); // Need to update ColorList

@@ -10,7 +10,7 @@ import com.dutchmtc.ee.utils.GuiUtils;
 import com.dutchmtc.ee.utils.ItemUtils;
 import net.minecraft.util.Util;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -358,12 +358,12 @@ public class GuiColorModifier extends GuiModifier<OptionalInt> {
     }
 
     @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         // do nothing
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         // allow multiple color modifiers
         updatePickerTexture(localHue);
         PickerLayout layout = createLayout();

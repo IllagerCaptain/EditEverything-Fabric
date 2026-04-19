@@ -6,7 +6,7 @@ import com.dutchmtc.ee.gui.components.EEButton;
 import com.dutchmtc.ee.utils.ChatUtils;
 import com.dutchmtc.ee.utils.GuiUtils;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -156,12 +156,12 @@ public class GuiStringArrayModifier extends GuiModifier<String[]> {
     }
 
     @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         // do nothing
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         super.renderBackground(graphics, mouseX, mouseY, partialTicks);
         super.render(graphics, mouseX, mouseY, partialTicks);
         for (int i = page * elms; i < (page + 1) * elms && i < tfs.length; i++) {

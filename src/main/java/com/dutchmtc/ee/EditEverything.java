@@ -2,7 +2,7 @@ package com.dutchmtc.ee;
 
 import com.dutchmtc.ee.utils.ItemUtils;
 import com.dutchmtc.ee.utils.Tuple;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -96,7 +96,7 @@ public class EditEverything {
     }
 
     public void register() {
-        tab = FabricItemGroup.builder()
+        tab = FabricCreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.ee"))
                 .icon(this::makeIcon)
                 .displayItems(this::accept)

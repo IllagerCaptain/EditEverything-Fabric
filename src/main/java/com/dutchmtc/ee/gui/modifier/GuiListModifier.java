@@ -8,7 +8,7 @@ import com.dutchmtc.ee.utils.Tuple;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -134,7 +134,7 @@ public abstract class GuiListModifier<T> extends GuiModifier<T> {
             return false;
         }
 
-        public void draw(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
+        public void draw(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
             buttonList.forEach(
                     b -> GuiUtils.drawRelative(graphics, b, offsetX, offsetY, mouseX, mouseY, partialTicks));
             fieldList.stream().filter(EditBox::isVisible).forEach(
@@ -224,7 +224,7 @@ public abstract class GuiListModifier<T> extends GuiModifier<T> {
         protected void otherActionPerformed(AbstractWidget button, int mouseButton) {
         }
 
-        public void drawNext(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY,
+        public void drawNext(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY,
                              float partialTicks) {
         }
 
@@ -592,12 +592,12 @@ public abstract class GuiListModifier<T> extends GuiModifier<T> {
     }
 
     @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         // do nothing
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         super.renderBackground(graphics, mouseX, mouseY, partialTicks);
         GuiUtils.drawGradientRect(graphics, 0, 0, width, height, 0xC0101010, 0xD0101010);
 

@@ -4,7 +4,7 @@ import com.dutchmtc.ee.gui.components.EEButton;
 import com.dutchmtc.ee.utils.GuiUtils;
 import com.dutchmtc.ee.utils.ItemUtils;
 import com.dutchmtc.ee.utils.ItemUtils.ContainerData;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -162,12 +162,12 @@ public class GuiSpawnEggEquipmentModifier extends GuiModifier<GuiSpawnEggEquipme
     }
 
     @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+    public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         // do nothing
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         super.renderBackground(graphics, mouseX, mouseY, delta);
 
         int left = panelLeft();

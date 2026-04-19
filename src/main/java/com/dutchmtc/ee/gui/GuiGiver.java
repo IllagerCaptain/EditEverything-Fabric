@@ -10,7 +10,7 @@ import com.dutchmtc.ee.utils.GuiUtils;
 import com.dutchmtc.ee.utils.ItemReader;
 import com.dutchmtc.ee.utils.ItemUtils;
 import com.dutchmtc.ee.utils.ItemUtilsClient;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -81,12 +81,12 @@ public class GuiGiver extends GuiModifier<String> {
     }
 
     @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         // do nothing
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         super.renderBackground(graphics, mouseX, mouseY, partialTicks);
         super.render(graphics, mouseX, mouseY, partialTicks);
         GuiUtils.drawCenterString(graphics, font, I18n.get("gui.ee.give"), width / 2, code.getY() - 21, Color.ORANGE.getRGB(), 20);

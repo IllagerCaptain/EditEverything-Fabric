@@ -7,7 +7,7 @@ import com.dutchmtc.ee.utils.ItemUtils;
 import com.dutchmtc.ee.utils.Tuple;
 import net.minecraft.advancements.criterion.BlockPredicate;
 import net.minecraft.advancements.criterion.DataComponentMatchers;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.Holder;
@@ -77,7 +77,7 @@ public class GuiAdventureBlockModifier extends GuiListModifier<ItemStack> {
         }
 
         @Override
-        public void draw(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
+        public void draw(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
             int textX = offsetX + 4;
             if (!displayStack.isEmpty()) {
                 GuiUtils.drawItemStack(graphics, displayStack, offsetX + 4, offsetY + 4);
@@ -183,7 +183,7 @@ public class GuiAdventureBlockModifier extends GuiListModifier<ItemStack> {
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         super.render(graphics, mouseX, mouseY, partialTicks);
 
         int n = Math.min(600, width - 20);

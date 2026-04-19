@@ -13,7 +13,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.Checkbox;
@@ -582,12 +582,12 @@ public class GuiArmorStandItemEditor extends Screen {
     }
 
     @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         // do nothing
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         super.renderBackground(graphics, mouseX, mouseY, delta);
         GuiUtils.drawGradientRect(graphics, 0, 0, width, height, 0xC0101010, 0xD0101010);
 
@@ -620,7 +620,7 @@ public class GuiArmorStandItemEditor extends Screen {
         super.render(graphics, mouseX, mouseY, delta);
     }
 
-    private void renderTabText(GuiGraphics graphics) {
+    private void renderTabText(GuiGraphicsExtractor graphics) {
         int controlsLeft = previewLeft + previewWidth + PAD;
         int controlsTop = panelTop;
         int controlsW = panelLeft + panelWidth - PAD - controlsLeft;
@@ -691,7 +691,7 @@ public class GuiArmorStandItemEditor extends Screen {
         }
     }
 
-    private void renderLockHeaderIcons(GuiGraphics graphics) {
+    private void renderLockHeaderIcons(GuiGraphicsExtractor graphics) {
         ItemStack[] icons = lockIcons();
         for (int i = 0; i < icons.length; i++) {
             int x = lockHeaderX[i];
@@ -826,7 +826,7 @@ public class GuiArmorStandItemEditor extends Screen {
         }
 
         @Override
-        protected void renderContents(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+        protected void renderContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
             if (!VersionCompat.is12111OrNewer()) {
                 return;
             }
@@ -853,7 +853,7 @@ public class GuiArmorStandItemEditor extends Screen {
 
         // 1.21.10: AbstractButton renders the label via renderString(...) instead of renderContents(...).
         @SuppressWarnings("unused")
-        protected void renderString(GuiGraphics graphics, Font font, int color) {
+        protected void renderString(GuiGraphicsExtractor graphics, Font font, int color) {
             if (VersionCompat.is12111OrNewer()) {
                 return;
             }
@@ -861,7 +861,7 @@ public class GuiArmorStandItemEditor extends Screen {
         }
 
         @SuppressWarnings("unused")
-        protected void renderString(GuiGraphics graphics, Font font, int x, int y, int color) {
+        protected void renderString(GuiGraphicsExtractor graphics, Font font, int x, int y, int color) {
             if (VersionCompat.is12111OrNewer()) {
                 return;
             }
@@ -869,14 +869,14 @@ public class GuiArmorStandItemEditor extends Screen {
         }
 
         @SuppressWarnings("unused")
-        protected void renderString(GuiGraphics graphics, int x, int y, int color) {
+        protected void renderString(GuiGraphicsExtractor graphics, int x, int y, int color) {
             if (VersionCompat.is12111OrNewer()) {
                 return;
             }
             renderSlotOnly(graphics);
         }
 
-        private void renderSlotOnly(GuiGraphics graphics) {
+        private void renderSlotOnly(GuiGraphicsExtractor graphics) {
             ItemStack stack = getter.get();
             if (stack == null) {
                 stack = ItemStack.EMPTY;

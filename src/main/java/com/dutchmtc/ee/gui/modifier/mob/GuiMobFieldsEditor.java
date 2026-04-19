@@ -565,7 +565,7 @@ public class GuiMobFieldsEditor extends GuiListModifier<CompoundTag> {
         }
 
         @Override
-        public void draw(net.minecraft.client.gui.GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
+        public void draw(net.minecraft.client.gui.GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
             int x1 = offsetX + 4;
             int x2 = offsetX + getSizeX() - 4;
             int y = offsetY + getSizeY() / 2;

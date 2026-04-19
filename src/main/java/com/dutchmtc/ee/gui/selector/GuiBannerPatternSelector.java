@@ -4,7 +4,7 @@ import com.dutchmtc.ee.gui.components.EEButton;
 import com.dutchmtc.ee.gui.modifier.GuiModifier;
 import com.dutchmtc.ee.utils.GuiUtils;
 import com.dutchmtc.ee.utils.ItemUtils;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
@@ -67,7 +67,7 @@ public class GuiBannerPatternSelector extends GuiModifier<Holder<BannerPattern>>
     }
 
     @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+    public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         // do nothing
     }
 
@@ -100,7 +100,7 @@ public class GuiBannerPatternSelector extends GuiModifier<Holder<BannerPattern>>
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         super.renderBackground(graphics, mouseX, mouseY, delta);
         GuiUtils.drawGradientRect(graphics, 0, 0, width, height, 0xC0101010, 0xD0101010);
 

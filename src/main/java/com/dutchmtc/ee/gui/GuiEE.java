@@ -4,7 +4,7 @@ import com.dutchmtc.ee.utils.GuiUtils;
 import com.dutchmtc.ee.utils.ReflectionUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -80,7 +80,7 @@ public class GuiEE extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
         if (devMode) {
             var entries = new ArrayList<ACTDevInfo>();
             entries.add(devInfo(ChatFormatting.BOLD + "ACT Dev")); // header

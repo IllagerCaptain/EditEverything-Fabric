@@ -31,7 +31,7 @@ public class GuiInventorySelector extends GuiListSelector<ItemStack> {
         }
 
         @Override
-        public void drawNext(net.minecraft.client.gui.GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY,
+        public void drawNext(net.minecraft.client.gui.GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY,
                              float partialTicks) {
             if (com.dutchmtc.ee.utils.GuiUtils.isHover(0, 0, 18, 18, mouseX, mouseY)) {
                 com.dutchmtc.ee.utils.GuiUtils.renderTooltip(graphics, parent.getMinecraft().font, itemStack,

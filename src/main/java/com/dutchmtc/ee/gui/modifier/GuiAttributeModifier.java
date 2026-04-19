@@ -9,7 +9,7 @@ import com.dutchmtc.ee.utils.GuiUtils;
 import com.dutchmtc.ee.utils.ItemUtils;
 import com.dutchmtc.ee.utils.ItemUtils.AttributeData;
 import com.dutchmtc.ee.utils.Tuple;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -112,7 +112,7 @@ public class GuiAttributeModifier extends GuiListModifier<List<AttributeData>> {
         }
 
         @Override
-        public void draw(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
+        public void draw(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
             GuiUtils.drawRelative(graphics, amount, offsetX, offsetY, mouseX, mouseY, partialTicks);
             GuiUtils.drawRightString(graphics, font, I18n.get("gui.ee.modifier.attr.amount") + " : ", amount,
                     (errAmount ? Color.RED : Color.WHITE).getRGB(), offsetX, offsetY);

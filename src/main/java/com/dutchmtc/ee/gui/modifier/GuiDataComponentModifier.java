@@ -8,7 +8,7 @@ import com.dutchmtc.ee.utils.GuiUtils;
 import com.dutchmtc.ee.utils.ItemUtils;
 import com.dutchmtc.ee.utils.Tuple;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponentType;
@@ -59,7 +59,7 @@ public class GuiDataComponentModifier extends GuiListModifier<ItemStack> {
         }
 
         @Override
-        public void draw(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
+        public void draw(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
             String title = id;
             int maxWidth = getSizeX() - 4 - 174;
             if (maxWidth > 0 && font.width(title) > maxWidth) {

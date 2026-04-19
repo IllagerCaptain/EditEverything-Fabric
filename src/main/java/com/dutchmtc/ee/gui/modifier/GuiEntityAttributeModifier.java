@@ -5,7 +5,7 @@ import com.dutchmtc.ee.gui.selector.GuiButtonListSelector;
 import com.dutchmtc.ee.utils.GuiUtils;
 import com.dutchmtc.ee.utils.ItemUtils;
 import com.dutchmtc.ee.utils.Tuple;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -98,7 +98,7 @@ public class GuiEntityAttributeModifier extends GuiListModifier<List<CompoundTag
         }
 
         @Override
-        public void draw(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
+        public void draw(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
             GuiUtils.drawRelative(graphics, base, offsetX, offsetY, mouseX, mouseY, partialTicks);
             // Using "Base :" label
             GuiUtils.drawRightString(graphics, font, "Base : ", base,

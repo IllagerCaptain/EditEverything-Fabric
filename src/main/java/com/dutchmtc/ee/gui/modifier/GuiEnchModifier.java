@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.dutchmtc.ee.gui.components.EEButton;
 import com.dutchmtc.ee.utils.GuiUtils;
 import com.dutchmtc.ee.utils.Tuple;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.CharacterEvent;
@@ -54,7 +54,7 @@ public class GuiEnchModifier extends GuiListModifier<List<Tuple<Enchantment, Int
         }
 
         @Override
-        public void draw(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
+        public void draw(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
             GuiUtils.drawRelative(graphics, textField, offsetX, offsetY, mouseX, mouseY, partialTicks);
             GuiUtils.drawRightString(graphics, font, enchantment.description().getString() + " : ", offsetX + textField.getX(),
                     offsetY + textField.getY(), (err ? Color.RED : level == 0 ? Color.GRAY : Color.WHITE).getRGB(),

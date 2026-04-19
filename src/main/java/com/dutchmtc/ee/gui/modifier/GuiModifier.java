@@ -3,7 +3,7 @@ package com.dutchmtc.ee.gui.modifier;
 import com.dutchmtc.ee.gui.GuiEE;
 import com.dutchmtc.ee.gui.GuiConfirmation;
 import net.minecraft.client.input.KeyEvent;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;

@@ -21,7 +21,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.ChatFormatting;
@@ -58,9 +58,9 @@ public class EEModClient implements ClientModInitializer {
         EEClientNetworking.initClient();
 
         // Register KeyMappings
-        giver = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.ee.giver", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_Y, ACT_CATEGORY));
-        menu = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.ee.menu", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_N, ACT_CATEGORY));
-        edit = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.ee.edit", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, ACT_CATEGORY));
+        giver = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.ee.giver", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_Y, ACT_CATEGORY));
+        menu = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.ee.menu", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_N, ACT_CATEGORY));
+        edit = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.ee.edit", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, ACT_CATEGORY));
 
         EEMod.registerInternalModule(GuiUtils.class);
 
@@ -156,9 +156,9 @@ public class EEModClient implements ClientModInitializer {
     private void onInitGui(Minecraft mc, Screen screen, int width, int height) {
         injectSuggestions();
 
-        ScreenEvents.afterRender(screen).register((s, guiGraphics, mouseX, mouseY, tickDelta) -> {
+        ScreenEvents.afterRender(screen).register((s, GuiGraphicsExtractor, mouseX, mouseY, tickDelta) -> {
             if (s instanceof GuiEE && EEMod.MOD_STATE.isShow()) {
-                guiGraphics.drawString(mc.font, "Warning! Currently in " + EEMod.MOD_STATE.getColor() + EEMod.MOD_STATE.name(),
+                GuiGraphicsExtractor.drawString(mc.font, "Warning! Currently in " + EEMod.MOD_STATE.getColor() + EEMod.MOD_STATE.name(),
                         5, 5, 0xffffffff);
             }
         });
@@ -177,7 +177,7 @@ public class EEModClient implements ClientModInitializer {
     private void onRenderTooltip(ItemStack stack, Item.TooltipContext context, TooltipFlag type, List<Component> lines) {
         Minecraft mc = Minecraft.getInstance();
 
-        if (!(!(mc.screen instanceof GuiModifier) && KeyBindingHelper.getBoundKeyOf(giver).getValue() != 0
+        if (!(!(mc.screen instanceof GuiModifier) && KeyMappingHelper.getBoundKeyOf(giver).getValue() != 0
                 && isKeyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) && mc.screen instanceof GuiMenu) {
             lines.add(ModdedCommand
                     .createPrefix(I18n.get("gui.ee.leftClick"), ChatFormatting.YELLOW, ChatFormatting.GOLD)
@@ -202,7 +202,7 @@ public class EEModClient implements ClientModInitializer {
 
         var containerData = ItemUtils.getContainerSize(stack);
         if (containerData != null && isControlDown() && isShiftDown()) {
-            if (isKeyDown(KeyBindingHelper.getBoundKeyOf(giver).getValue())) {
+            if (isKeyDown(KeyMappingHelper.getBoundKeyOf(giver).getValue())) {
                 mc.setScreen(new GuiGiver(mc.screen, stack));
             }
             // displayInventory(ev); // TODO: Implement inventory display rendering
@@ -221,24 +221,24 @@ public class EEModClient implements ClientModInitializer {
             // Tab lookup logic needs update for 1.21
             
              if (!(mc.screen instanceof GuiModifier)) {
-                if (KeyBindingHelper.getBoundKeyOf(giver).getValue() != 0 && isKeyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) {
-                    if (isKeyDown(KeyBindingHelper.getBoundKeyOf(giver).getValue())) {
+                if (KeyMappingHelper.getBoundKeyOf(giver).getValue() != 0 && isKeyDown(GLFW.GLFW_KEY_LEFT_SHIFT)) {
+                    if (isKeyDown(KeyMappingHelper.getBoundKeyOf(giver).getValue())) {
                         mc.setScreen(new GuiGiver(mc.screen, stack));
                     }
                     lines.add(ModdedCommand
-                            .createPrefix(KeyBindingHelper.getBoundKeyOf(giver).getDisplayName().getString(), ChatFormatting.YELLOW,
+                            .createPrefix(KeyMappingHelper.getBoundKeyOf(giver).getDisplayName().getString(), ChatFormatting.YELLOW,
                                     ChatFormatting.GOLD)
                             .append(ModdedCommand.createTranslatedText("cmd.ee.opengiver", ChatFormatting.YELLOW)));
                 }
-                if (KeyBindingHelper.getBoundKeyOf(menu).getValue() != 0) {
-                    if (isKeyDown(KeyBindingHelper.getBoundKeyOf(menu).getValue())) {
+                if (KeyMappingHelper.getBoundKeyOf(menu).getValue() != 0) {
+                    if (isKeyDown(KeyMappingHelper.getBoundKeyOf(menu).getValue())) {
                         var registryAccess = mc.level != null ? mc.level.registryAccess() : VanillaRegistries.createLookup();
                         String code = com.dutchmtc.ee.utils.ChatUtils.untranslateColorCodes(ItemUtils.getGiveCode(stack, registryAccess));
                         EEMod.saveItem(code);
                         mc.setScreen(new GuiMenu(mc.screen));
                     }
                     lines.add(ModdedCommand
-                            .createPrefix(KeyBindingHelper.getBoundKeyOf(menu).getDisplayName().getString(), ChatFormatting.YELLOW,
+                            .createPrefix(KeyMappingHelper.getBoundKeyOf(menu).getDisplayName().getString(), ChatFormatting.YELLOW,
                                     ChatFormatting.GOLD)
                             .append(ModdedCommand.createTranslatedText("gui.ee.save", ChatFormatting.YELLOW)));
                 }
@@ -278,6 +278,6 @@ public class EEModClient implements ClientModInitializer {
     }
 
     public static void drawString(Font renderer, String str, int x, int y, int color) {
-        // Placeholder if needed, but should use GuiGraphics
+        // Placeholder if needed, but should use GuiGraphicsExtractor
     }
 }

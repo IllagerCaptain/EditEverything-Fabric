@@ -13,7 +13,7 @@ import com.dutchmtc.ee.utils.ItemUtilsClient;
 import com.dutchmtc.ee.utils.Tuple;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.player.LocalPlayer;
@@ -44,13 +44,13 @@ public class GuiMenu extends GuiListModifier<Object> {
         }
 
         @Override
-        public void draw(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
+        public void draw(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY, float partialTicks) {
             GuiUtils.drawItemStack(graphics, stack, offsetX + 1, offsetY + 1);
             super.draw(graphics, offsetX, offsetY, mouseX, mouseY, partialTicks);
         }
 
         @Override
-        public void drawNext(GuiGraphics graphics, int offsetX, int offsetY, int mouseX, int mouseY,
+        public void drawNext(GuiGraphicsExtractor graphics, int offsetX, int offsetY, int mouseX, int mouseY,
                              float partialTicks) {
             if (GuiUtils.isHover(0, 0, 18, 18, mouseX, mouseY)) {
                 GuiUtils.drawRect(graphics, offsetX, offsetY, offsetX + 18, offsetY + 18, 0x55cccccc);

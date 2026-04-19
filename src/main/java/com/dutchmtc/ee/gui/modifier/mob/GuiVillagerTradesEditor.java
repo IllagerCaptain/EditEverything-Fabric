@@ -11,7 +11,7 @@ import com.dutchmtc.ee.utils.ItemUtils;
 import com.google.gson.JsonObject;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Tooltip;
@@ -158,12 +158,12 @@ public class GuiVillagerTradesEditor extends GuiModifier<List<CompoundTag>> {
     }
 
     @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         // do nothing
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void render(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
         GuiUtils.drawGradientRect(graphics, 0, 0, width, height, 0xC0101010, 0xD0101010);
 
         int left = panelLeft();
@@ -293,7 +293,7 @@ public class GuiVillagerTradesEditor extends GuiModifier<List<CompoundTag>> {
         return super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
     }
 
-    private void renderTradeList(GuiGraphics graphics, int listLeft, int listTop, int listRight, int listBottom, int mouseX, int mouseY) {
+    private void renderTradeList(GuiGraphicsExtractor graphics, int listLeft, int listTop, int listRight, int listBottom, int mouseX, int mouseY) {
         int visible = visibleRows(listTop, listBottom);
         int maxOffset = Math.max(0, recipes.size() - visible);
         scrollOffset = Math.max(0, Math.min(scrollOffset, maxOffset));
@@ -498,7 +498,7 @@ public class GuiVillagerTradesEditor extends GuiModifier<List<CompoundTag>> {
         }
     }
 
-    private void renderEditorScrollHint(GuiGraphics graphics, int editorLeft, int top, int bottom) {
+    private void renderEditorScrollHint(GuiGraphicsExtractor graphics, int editorLeft, int top, int bottom) {
         int maxScroll = editorMaxScroll();
         if (maxScroll <= 0) {
             return;

@@ -19,7 +19,8 @@ public class KeyboardHandlerMixin {
     @Inject(
             method = "handleDebugKeys(Lnet/minecraft/client/input/KeyEvent;)Z",
             at = @At("HEAD"),
-            cancellable = true
+            cancellable = true,
+            remap = false
     )
     private void ee$allowGamemodeSwitcherWithoutPermissions(KeyEvent event, CallbackInfoReturnable<Boolean> cir) {
         if (event == null || minecraft == null || minecraft.getWindow() == null) {
